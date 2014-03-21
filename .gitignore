@@ -213,3 +213,12 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+
+#############
+## Code::Blocks
+#############
+
+*.cbp
+*.depend
+*.layout
