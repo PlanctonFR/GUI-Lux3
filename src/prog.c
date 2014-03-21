@@ -28,8 +28,8 @@
 
 void homeScreen(void)
 {
-    unsigned int frameLimit = SDL_GetTicks() + 16;
-    unsigned int quit = 0;
+    int frameLimit = SDL_GetTicks() + 16;
+    int quit = 0;
 
     while (!quit)
     {
