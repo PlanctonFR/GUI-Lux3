@@ -16,29 +16,28 @@
  */
 
 /**
- *  main.c
+ *  prog.c
  *  ------
  *
  *  By Victor Bouvier-Deleau (PlanctonFR).
  *
- *  Role: initializing the SDL, and launching the program menu.
+ *  Role: main program.
  */
 
-#include "../inc/main.h"
+#include "../inc/prog.h"
 
-int main(int argc, char** argv)
+void homeScreen(void)
 {
-    /* INITIALIZATIONS ===================================================== */
+    unsigned int frameLimit = SDL_GetTicks() + 16;
+    unsigned int quit = 0;
 
-    init("GUI-Lux3");
+    while (!quit)
+    {
+        getInput();
 
-    atexit(cleanup);
+        draw();
 
-    /* LAUNCH THE PROGRAM ================================================== */
-
-    homeScreen();
-
-    /* QUIT THE PROGRAMM =================================================== */
-
-    return EXIT_SUCCESS;
+        delay(frameLimit);
+        frameLimit = SDL_GetTicks() + 16;
+    }
 }
