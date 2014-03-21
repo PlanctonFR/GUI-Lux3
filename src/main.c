@@ -36,7 +36,7 @@ int main(int argc, char** argv)
 
     /* LAUNCH THE PROGRAM ================================================== */
 
-    homeScreen();
+    mainLoop();
 
     /* QUIT THE PROGRAMM =================================================== */
 

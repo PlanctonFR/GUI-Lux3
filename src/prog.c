@@ -26,7 +26,7 @@
 
 #include "../inc/prog.h"
 
-void homeScreen(void)
+void mainLoop(void)
 {
     int frameLimit = SDL_GetTicks() + 16;
     int quit = 0;
