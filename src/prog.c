@@ -28,10 +28,10 @@
 
 void mainLoop(void)
 {
-    int frameLimit = SDL_GetTicks() + 16;
     int quit = 0;
+    int frameLimit = SDL_GetTicks() + 16;
 
-    while (!quit)
+    while(!quit)
     {
         getInput();
 
