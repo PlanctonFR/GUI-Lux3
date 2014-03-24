@@ -35,9 +35,19 @@ void mainLoop(void)
     {
         quit = getInput();
 
-        SDL_Texture* button = loadTexture("res/img/button/button.png");
+        button.texture = loadTexture("res/img/button/button.png");
+        button.srcRect.x = 0;
+        button.srcRect.y = 0;
+        button.srcRect.w = 83;
+        button.srcRect.h = 25;
+        button.dstRect.x = WINDOW_WIDTH/2;
+        button.dstRect.y = WINDOW_HEIGHT/2;
+        button.dstRect.w = 83;
+        button.dstRect.h = 25;
 
         draw();
+
+        blitTexture(button);
 
         delay(frameLimit);
         frameLimit = SDL_GetTicks() + 16;
@@ -72,4 +82,9 @@ SDL_Texture* loadTexture(char *path)
     }
 
     return newTexture;
+}
+
+void blitTexture(Sprite sprite)
+{
+    SDL_RenderCopy(home.pRendererMain, sprite.texture, &sprite.srcRect, &sprite.dstRect);
 }

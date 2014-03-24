@@ -31,6 +31,7 @@
 
 extern Screen home;
 extern Font font;
+extern Sprite button;
 
 void init(char *pTitle);
 void cleanup(void);

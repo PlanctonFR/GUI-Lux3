@@ -33,6 +33,7 @@ extern void init(char *);
 extern void cleanup(void);
 extern void mainLoop(void);
 extern SDL_Texture* loadTexture(char *);
+extern void blitTexture(Sprite);
 extern int getInput(void);
 extern void draw(void);
 extern void delay(unsigned int);

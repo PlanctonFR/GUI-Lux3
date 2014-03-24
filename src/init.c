@@ -97,6 +97,8 @@ void cleanup(void)
     //TTF_CloseFont(font.pFontText);
     //TTF_CloseFont(font.pFontTitle);
 
+    SDL_DestroyTexture(button.texture);
+
     SDL_DestroyRenderer(home.pRendererMain);
     SDL_DestroyWindow(home.pWindowMain);
 
