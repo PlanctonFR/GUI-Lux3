@@ -31,6 +31,6 @@
 
 extern Input input;
 
-void getInput(void);
+int getInput(void);
 
 #endif // INPUT_H_INCLUDED

@@ -33,7 +33,7 @@ void mainLoop(void)
 
     while(!quit)
     {
-        getInput();
+        quit = getInput();
 
         SDL_Texture* button = loadTexture("res/img/button/button.png");
 
@@ -42,6 +42,8 @@ void mainLoop(void)
         delay(frameLimit);
         frameLimit = SDL_GetTicks() + 16;
     }
+
+    exit(0);
 }
 
 SDL_Texture* loadTexture(char *path)

@@ -26,8 +26,9 @@
 
 #include "../inc/input.h"
 
-void getInput(void)
+int getInput(void)
 {
+    int quit = 0;
     SDL_Event event;
 
     while(SDL_PollEvent(&event))
@@ -35,14 +36,14 @@ void getInput(void)
         switch(event.type)
         {
         case SDL_QUIT:
-            exit(0);
+            quit = 1;
             break;
 
         case SDL_KEYDOWN:
             switch(event.key.keysym.sym)
             {
             case SDLK_ESCAPE:
-                exit(0);
+                quit = 1;
                 break;
 
             case SDLK_DELETE:
@@ -110,4 +111,5 @@ void getInput(void)
             break;
         }
     }
+    return quit;
 }
