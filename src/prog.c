@@ -35,9 +35,39 @@ void mainLoop(void)
     {
         getInput();
 
+        SDL_Texture* button = loadTexture("res/img/button/button.png");
+
         draw();
 
         delay(frameLimit);
         frameLimit = SDL_GetTicks() + 16;
     }
+}
+
+SDL_Texture* loadTexture(char *path)
+{
+    SDL_Texture* newTexture = NULL;
+
+    SDL_Surface* loadedSurface = IMG_Load(path);
+    if(loadedSurface == NULL)
+    {
+        printf("Unable to load image %s! SDL_image Error: %s\n",
+               path,
+               IMG_GetError());
+    }
+    else
+    {
+        newTexture = SDL_CreateTextureFromSurface(home.pRendererMain,
+                                                  loadedSurface);
+        if(newTexture == NULL)
+        {
+            printf("Unable to create texture from %s! SDL Error: %s\n",
+                   path,
+                   SDL_GetError());
+        }
+
+        SDL_FreeSurface(loadedSurface);
+    }
+
+    return newTexture;
 }
