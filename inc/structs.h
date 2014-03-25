@@ -46,9 +46,14 @@ typedef struct Input
     int left, right, up, down, exit, enter, erase;
 }Input;
 
-typedef struct Sprite
+typedef struct Texture
 {
     SDL_Texture* texture;
+    int w, h;
+}Texture;
+
+typedef struct Sprite
+{
     SDL_Rect srcRect, dstRect;
 }Sprite;
 

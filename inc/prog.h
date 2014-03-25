@@ -4,9 +4,10 @@
 #include "main.h"
 
 void mainLoop(void);
-SDL_Texture* loadTexture(char *path);
-void blitTexture(Sprite sprite);
+Texture loadTexture(char *path);
+void blitTexture(Texture texture, Sprite sprite);
 
-Sprite button;
+Sprite buttonQuit, buttonAccept;
+Texture button;
 
 #endif // PROG_H_INCLUDED

@@ -31,34 +31,51 @@ void mainLoop(void)
     int quit = 0;
     int frameLimit = SDL_GetTicks() + 16;
 
+    Texture button = loadTexture("res/img/button/button.png");
+
     while(!quit)
     {
         quit = getInput();
 
-        button.texture = loadTexture("res/img/button/button.png");
-        button.srcRect.x = 0;
-        button.srcRect.y = 0;
-        button.srcRect.w = 83;
-        button.srcRect.h = 25;
-        button.dstRect.x = WINDOW_WIDTH/2;
-        button.dstRect.y = WINDOW_HEIGHT/2;
-        button.dstRect.w = 83;
-        button.dstRect.h = 25;
+        buttonQuit.srcRect.w = button.w;
+        buttonQuit.srcRect.h = button.h;
+        buttonQuit.srcRect.x = 0;
+        buttonQuit.srcRect.y = 0;
+        buttonQuit.dstRect.w = buttonQuit.srcRect.w;
+        buttonQuit.dstRect.h = buttonQuit.srcRect.h;
+        buttonQuit.dstRect.x = (WINDOW_WIDTH / 2) - (buttonQuit.dstRect.w / 2);
+        buttonQuit.dstRect.y = (WINDOW_HEIGHT / 2) - (buttonQuit.dstRect.h / 2);
+
+        buttonAccept.srcRect.w = button.w;
+        buttonAccept.srcRect.h = button.h;
+        buttonAccept.srcRect.x = 0;
+        buttonAccept.srcRect.y = 0;
+        buttonAccept.dstRect.w = buttonAccept.srcRect.w;
+        buttonAccept.dstRect.h = buttonAccept.srcRect.h;
+        buttonAccept.dstRect.x = 0;
+        buttonAccept.dstRect.y = 0;
 
         draw();
 
-        blitTexture(button);
+        blitTexture(button, buttonQuit);
+        blitTexture(button, buttonAccept);
 
         delay(frameLimit);
         frameLimit = SDL_GetTicks() + 16;
     }
 
+    SDL_DestroyTexture(button.texture);
+
     exit(0);
 }
 
-SDL_Texture* loadTexture(char *path)
+Texture loadTexture(char *path)
 {
-    SDL_Texture* newTexture = NULL;
+    Texture newTexture;
+
+    newTexture.texture = NULL;
+    newTexture.h = 0;
+    newTexture.w = 0;
 
     SDL_Surface* loadedSurface = IMG_Load(path);
     if(loadedSurface == NULL)
@@ -69,14 +86,16 @@ SDL_Texture* loadTexture(char *path)
     }
     else
     {
-        newTexture = SDL_CreateTextureFromSurface(home.pRendererMain,
+        newTexture.texture = SDL_CreateTextureFromSurface(home.pRendererMain,
                                                   loadedSurface);
-        if(newTexture == NULL)
+        if(newTexture.texture == NULL)
         {
             printf("Unable to create texture from %s! SDL Error: %s\n",
                    path,
                    SDL_GetError());
         }
+        newTexture.h = loadedSurface->h;
+        newTexture.w = loadedSurface->w;
 
         SDL_FreeSurface(loadedSurface);
     }
@@ -84,7 +103,7 @@ SDL_Texture* loadTexture(char *path)
     return newTexture;
 }
 
-void blitTexture(Sprite sprite)
+void blitTexture(Texture texture, Sprite sprite)
 {
-    SDL_RenderCopy(home.pRendererMain, sprite.texture, &sprite.srcRect, &sprite.dstRect);
+    SDL_RenderCopy(home.pRendererMain, texture.texture, &sprite.srcRect, &sprite.dstRect);
 }
